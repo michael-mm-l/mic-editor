@@ -1,0 +1,29 @@
+{
+  "name": "mic-editor",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.4.0",
+    "cherry-markdown": "^0.8.21",
+    "echarts": "4.6.0",
+    "mermaid": "8.11.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-load-script": "^0.0.6",
+    "recoil": "^0.7.7"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.4.0",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "vite": "^4.4.7"
+  }
+}
