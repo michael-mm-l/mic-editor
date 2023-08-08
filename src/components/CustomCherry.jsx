@@ -201,6 +201,9 @@ var basicConfig = {
           "word",
         ],
       },
+      "|",
+      "drawIo",
+      "|",
       "graph",
     ],
     bubble: [
@@ -218,6 +221,9 @@ var basicConfig = {
   },
   // 上传文件的回调
   fileUpload: callbacks.fileUpload,
+
+  // 打开draw.io编辑页的url，如果为空则drawio按钮失效
+  drawioIframeUrl: "drawio_demo/drawio_demo.html",
   /**
    * 上传文件的时候用来指定文件类型
    */
