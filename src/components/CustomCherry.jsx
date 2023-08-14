@@ -271,6 +271,7 @@ var basicConfig = {
     className: "cherry-markdown",
     // 是否启用预览区域编辑能力（目前支持编辑图片尺寸、编辑表格内容）
     enablePreviewerBubble: true,
+    // forceAppend: true,
   },
   keydown: [],
   editor: {

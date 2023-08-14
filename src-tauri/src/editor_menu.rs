@@ -16,7 +16,8 @@ pub fn app_menu() -> Menu{
         .add_item(CustomMenuItem::new("Open", "Open"))
         .add_item(CustomMenuItem::new("Save", "Save"))
         .add_submenu(export)
-        .add_submenu(view);
+        .add_submenu(view)
+        .add_item(CustomMenuItem::new("Help", "Help"));
 
     menu
 }   
