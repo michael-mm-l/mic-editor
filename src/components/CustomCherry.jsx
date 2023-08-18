@@ -1,6 +1,7 @@
 import { invoke } from "@tauri-apps/api/tauri";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
 import Cherry from "cherry-markdown";
+import { getCurrent } from "@tauri-apps/api/window";
 
 /**
  * 自定义一个语法
@@ -72,7 +73,15 @@ const callbacks = {
       }
     });
   },
-  afterChange: (text, html) => {},
+  afterChange: async (text, html) => {
+    console.log("------------------------");
+    let aa = getCurrent();
+    const title = await aa.title();
+    if (title.indexOf("**") > 0) {
+      return;
+    }
+    aa.setTitle(title + " **");
+  },
   afterInit: (text, html) => {},
   beforeImageMounted: (srcProp, src) => ({ srcProp, src }),
   onClickPreview: (event) => {

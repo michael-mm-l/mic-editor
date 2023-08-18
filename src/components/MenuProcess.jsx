@@ -6,9 +6,10 @@ import { getCurrent } from "@tauri-apps/api/window";
 
 export const newProcess = async (customCherry) => {
   let storage = globalThis.window.localStorage;
-  let path = storage.getItem("openFilePath");
+  let flg = storage.getItem("flg");
   if (customCherry.getValue().length > 0) {
-    if (path == undefined || path === "untitled.md") {
+    let path = storage.getItem("name");
+    if (flg == undefined || flg == 1) {
       const confirmed = await confirm(
         "New file has be modified save changes?",
         "Save Changes"
@@ -31,7 +32,8 @@ export const newProcess = async (customCherry) => {
   customCherry.setValue("", true);
   let currentWin = getCurrent();
   currentWin.setTitle("untitled.md");
-  storage.setItem("openFilePath", "untitled.md");
+  storage.setItem("name", "untitled.md");
+  storage.setItem("flg", 1);
 };
 
 export const openProcess = async (customCherry) => {
@@ -54,15 +56,16 @@ export const openProcess = async (customCherry) => {
     currentWin.setTitle(selected);
 
     let storage = globalThis.window.localStorage;
-    storage.setItem("openFilePath", selected);
+    storage.setItem("name", selected);
+    storage.setItem("flg", 0);
   }
 };
 
 export const saveProcess = async (customCherry) => {
   let storage = globalThis.window.localStorage;
-
-  let path = storage.getItem("openFilePath");
-  if (path === "untitled.md" || path === undefined) {
+  let flg = storage.getItem("flg");
+  let path = "";
+  if (flg == 1) {
     path = await save({
       filters: [
         {
@@ -71,12 +74,14 @@ export const saveProcess = async (customCherry) => {
         },
       ],
     });
+  } else {
+    path = storage.getItem("name");
   }
 
   await writeTextFile(path, customCherry.getValue(), {
     dir: BaseDirectory.Document,
   });
-  storage.setItem("openFilePath", path);
+  storage.setItem("name", path);
   let win = getCurrent();
   win.setTitle(path);
 };
